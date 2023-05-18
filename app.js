@@ -1,6 +1,5 @@
 class Post {
-  constructor(id, body, author) {
-    this.id = id;
+  constructor(body, author) {
     this.body = body;
     this.author = author;
     this.comments = [];
@@ -8,8 +7,7 @@ class Post {
 }
 
 class Comment {
-  constructor(id, body, author) {
-    this.id = id;
+  constructor(body, author) {
     this.body = body;
     this.author = author;
   }
@@ -17,17 +15,19 @@ class Comment {
 
 let posts = [];
 
-posts.push(new Post(1, "Trying to decide a career path? Programming is the move. Change my mind", "WhySoSerious45"));
-posts[0].comments.push(new Comment(1, "I agree", "John Doe"));
+posts.push(new Post("Trying to decide a career path? Programming is the move. Change my mind", "WhySoSerious45"));
 
-function addComment(postId, comment, author) {
-  posts[postId].comments.push(new Comment(1, comment, author));
+function addComment(postIndex) {
+  let author = document.getElementById("new-comment-user").value;
+  let comment = document.getElementById("new-comment-text").value;
+  posts[postIndex].comments.push(new Comment(comment, author));
+  render();
 }
 
 function render() {
   let feed = document.getElementById("feed");
   feed.innerHTML = "";
-  posts.forEach((post) => {
+  posts.forEach((post, index) => {
     feed.innerHTML += `
         <div class="post">
             <div class="post-header">
@@ -36,16 +36,31 @@ function render() {
             <div class="post-body">
                 ${post.body}
             </div>
-            <div class="post-comments" id="comments">
-            </div>
+        </div>
+        <div class="post-comments" id="comments">
+        </div>
+        <div class="add-comment">
+            <input type="text" class="new-comment-user" id="new-comment-user" placeholder="Display Name">
+            <input type="text" class="new-comment-text" id="new-comment-text" placeholder="Add a comment...">
+            <button class="new-comment-submit" onClick="addComment(${index})">Submit</button>
         </div>
     `;
     let comments = document.getElementById("comments");
-    post.comments.forEach((comment) => {
+    post.comments.forEach((comment, index) => {
       comments.innerHTML += `
                     <div class="comment">
-                        <div class="comment-author">${comment.author}</div>
-                        <div class="comment-body">${comment.body}</div>
+                        <div class="user-image">
+                            <img src="./images/user.png" alt="user image">
+                        </div>
+                        <div class="comment-content">
+                            <div class="comment-author">${comment.author}</div>
+                            <div class="comment-body">${comment.body}</div>
+                            <div>${index}</div>
+                        </div>
+                        <div class="comment-actions">
+                            <div class="comment-action">Edit</div>
+                            <div class="comment-action">Delete</div>
+                        </div>
                     </div>
                 `;
     });
