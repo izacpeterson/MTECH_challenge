@@ -1,3 +1,6 @@
+//MTECH challenge app
+
+//Classes. Probably don't need a post class, as there will only be one post. But I'm going to make one anyway.
 class Post {
   constructor(body, author) {
     this.body = body;
@@ -25,6 +28,7 @@ function addComment(postIndex) {
   posts[postIndex].comments.push(new Comment(comment, author));
   render();
 }
+
 function editComment(commentIndex) {
   render();
   let commentHTML = document.getElementById(`comment-${commentIndex}`);
@@ -53,9 +57,12 @@ function deleteComment(commentIndex) {
   render();
 }
 
+// The render function. Used to render out every post and comment. Also used to 'cancel' editing by re-rendering the page.
 function render() {
+  localStorage.setItem("posts", JSON.stringify(posts));
   let feed = document.getElementById("feed");
   feed.innerHTML = "";
+  // Manipulating the DOM twice might not be best, might rework later.
   posts.forEach((post, index) => {
     feed.innerHTML += `
         <div class="post">
@@ -77,25 +84,29 @@ function render() {
     let comments = document.getElementById("comments");
     post.comments.forEach((comment, index) => {
       comments.innerHTML += `
-                <div class="comment" id="comment-${index}">   
-                    <div class="comment-content">
-                        <div class="user-image">
-                            <img src="./images/user.png" alt="user image">
-                        </div>
-                        <div class="comment-details">
-                            <div class="comment-author">${comment.author}</div>
-                            <div class="comment-body">${comment.body}</div>
-                        </div>
-                        <div class="comment-actions">
-                            <div class="comment-action" onClick="editComment(${index})">Edit</div>
-                            <div class="comment-action" onClick="deleteComment(${index})">Delete</div>
-                        </div>
-                    </div>
-
+        <div class="comment" id="comment-${index}">   
+            <div class="comment-content">
+                <div class="user-image">
+                    <img src="./images/user.png" alt="user image">
                 </div>
+                <div class="comment-details">
+                    <div class="comment-author">${comment.author}</div>
+                    <div class="comment-body">${comment.body}</div>
+                </div>
+                <div class="comment-actions">
+                    <div class="comment-action" onClick="editComment(${index})">Edit</div>
+                    <div class="comment-action" onClick="deleteComment(${index})">Delete</div>
+                </div>
+            </div>
+        </div>
                 `;
     });
   });
+}
+
+// If there are posts in local storage, load them. Otherwise, render the page.
+if (localStorage.getItem("posts")) {
+  posts = JSON.parse(localStorage.getItem("posts"));
 }
 
 render();
