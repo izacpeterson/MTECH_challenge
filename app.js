@@ -25,7 +25,9 @@ posts[0].comments.push(new Comment("I disagree", "Batman"));
 function addComment(postIndex) {
   let author = document.getElementById("new-comment-user").value;
   let comment = document.getElementById("new-comment-text").value;
-  posts[postIndex].comments.push(new Comment(comment, author));
+  // add comment to post at front of array
+  posts[postIndex].comments.unshift(new Comment(comment, author));
+
   render();
 }
 
@@ -62,6 +64,7 @@ function render() {
   localStorage.setItem("posts", JSON.stringify(posts));
   let feed = document.getElementById("feed");
   feed.innerHTML = "";
+
   // Manipulating the DOM twice might not be best, might rework later.
   posts.forEach((post, index) => {
     feed.innerHTML += `
