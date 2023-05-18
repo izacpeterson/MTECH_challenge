@@ -126,6 +126,11 @@ if (localStorage.getItem("posts")) {
     });
   });
 }
+
+document.getElementById("reset").addEventListener("click", function () {
+  localStorage.clear();
+  location.reload();
+});
 // posts.push(new Post("I'm not sure what to do with my life", "John", 1));
 // posts[1].comments = [new Comment("I agree", "John", 0, 1), new Comment("I disagree", "Jane", 1, 1), new Comment("I'm not sure", "Joe", 2, 1)];
 
