@@ -85,8 +85,6 @@ function render() {
             <input type="text" class="new-comment-text" id="new-comment-text-${postIndex}" placeholder="Add a comment...">
             <button class="new-comment-submit" onClick="posts[${postIndex}].addComment()">Submit</button>
         </div>
-        <pre>${JSON.stringify(posts, null, 2)}</pre>
-
     `;
     let comments = document.getElementById(`comments-${postIndex}`);
     post.comments.forEach((comment, commentIndex) => {
