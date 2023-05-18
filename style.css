@@ -41,11 +41,18 @@ body {
 }
 
 .comment {
+  width: 70%;
   background-color: #f6f6f6;
   padding: 20px;
   margin: 10px 0;
   display: flex;
-  width: 70%;
+  flex-direction: column;
+  align-items: center;
+}
+
+.comment-content {
+  display: flex;
+  width: 100%;
 }
 
 .user-image {
@@ -55,7 +62,7 @@ body {
   width: 40px;
 }
 
-.comment-content {
+.comment-details {
   flex: 1;
 }
 
