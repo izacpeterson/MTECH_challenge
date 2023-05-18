@@ -14,6 +14,7 @@ class Post {
 
     // this.comments.push(new Comment(comment, author, this.comments.length, this.id));
     this.comments.unshift(new Comment(comment, author, this.comments.length, this.id));
+    this.fixCommentIndex();
     render();
   }
   fixCommentIndex() {
@@ -56,6 +57,7 @@ class Comment {
   delete() {
     let index = posts[this.postID].comments.indexOf(this);
     posts[this.postID].comments.splice(index, 1);
+    posts[this.postID].fixCommentIndex();
     render();
   }
 }
