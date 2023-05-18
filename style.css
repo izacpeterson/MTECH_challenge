@@ -17,18 +17,17 @@ body {
   /* border: 1px solid #cbcbcb; */
   /* box-shadow: 0 10px 10px rgb(199, 199, 199); */
   background-color: white;
-  /* width: 100%; */
-  padding: 20px;
+  width: 100%;
 }
 
 .post-body {
   font-size: 32px;
+  padding: 0 0 10px 20px;
 }
 
-.post-author,
-.comment-author {
+.post-author {
   color: #666666;
-  padding: 0 0 10px 0;
+  padding: 10px 0 10px 20px;
 }
 
 .post-comments {
@@ -38,6 +37,7 @@ body {
   width: 100%;
   height: 400px;
   overflow-y: scroll;
+  padding: 20px;
 }
 
 .comment {
@@ -66,6 +66,10 @@ body {
   flex: 1;
 }
 
+.comment-body {
+  font-size: 30px;
+}
+
 .comment-actions {
   display: flex;
   color: #6ec8e6;
@@ -81,7 +85,13 @@ body {
   justify-content: center;
   background-color: white;
 }
-.add-comment input {
+.edit-comment {
+  display: flex;
+  width: 100%;
+}
+
+.add-comment input,
+.edit-comment input {
   padding: 10px;
   margin: 20px;
   border: 1px solid #cbcbcb;
@@ -90,11 +100,13 @@ body {
 .new-comment-user {
   width: 10%;
 }
-.new-comment-text {
+.new-comment-text,
+.edit-comment-text {
   flex-grow: 1;
 }
 
-.new-comment-submit {
+.new-comment-submit,
+.edit-comment-submit {
   background: none;
   border: none;
   padding: 10px;
