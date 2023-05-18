@@ -1,6 +1,6 @@
 //MTECH challenge app. Probably overworked it quite a bit, but I like how it turned out.
 
-//Classes. Probably don't need a post class, as there will only be one post. But I'm going to make one anyway.
+//Classes for Post and Comment. Post has an array of comments. Comment has a postID to keep track of which post it belongs to.
 class Post {
   constructor(body, author, id) {
     this.body = body;

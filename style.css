@@ -115,3 +115,31 @@ body {
   cursor: pointer;
   font-size: 20px;
 }
+
+@media only screen and (max-width: 600px) {
+  #feed {
+    margin: 0px;
+  }
+  .post-comments {
+    padding: 0;
+    padding-bottom: 60px;
+  }
+  .comment {
+    width: 90%;
+  }
+  .new-comment-submit,
+  .edit-comment-submit {
+    padding: 0;
+    margin-right: 20px;
+  }
+  .add-comment input,
+  .edit-comment input {
+    padding: 10px;
+    margin: 10px;
+  }
+  .add-comment {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+}
