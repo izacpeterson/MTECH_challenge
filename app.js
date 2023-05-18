@@ -26,6 +26,7 @@ function addComment(postIndex) {
   render();
 }
 function editComment(commentIndex) {
+  render();
   let commentHTML = document.getElementById(`comment-${commentIndex}`);
   let comment = posts[0].comments[commentIndex];
   commentHTML.innerHTML += `
@@ -44,6 +45,11 @@ function editComment(commentIndex) {
 function saveComment(commentIndex) {
   let newComment = document.getElementById("edit-comment-text").value;
   posts[0].comments[commentIndex].body = newComment;
+  render();
+}
+
+function deleteComment(commentIndex) {
+  posts[0].comments.splice(commentIndex, 1);
   render();
 }
 
@@ -82,7 +88,7 @@ function render() {
                         </div>
                         <div class="comment-actions">
                             <div class="comment-action" onClick="editComment(${index})">Edit</div>
-                            <div class="comment-action">Delete</div>
+                            <div class="comment-action" onClick="deleteComment(${index})">Delete</div>
                         </div>
                     </div>
 
