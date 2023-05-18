@@ -111,11 +111,13 @@ function render() {
   });
 }
 
+//Create empty posts array, and populate with demmo comments
 let posts = [];
 
 posts.push(new Post("Trying to decide a career path? Programming is the move. Change my mind", "WhySoSerious45", 0));
 posts[0].comments = [new Comment("I agree", "John", 0, 0), new Comment("I disagree", "Jane", 1, 0), new Comment("I'm not sure", "Joe", 2, 0)];
 
+//Check if there are any posts in local storage, and populate the posts array with them if there are.
 if (localStorage.getItem("posts")) {
   posts = [];
   localPosts = JSON.parse(localStorage.getItem("posts"));
@@ -127,6 +129,7 @@ if (localStorage.getItem("posts")) {
   });
 }
 
+//reset button
 document.getElementById("reset").addEventListener("click", function () {
   localStorage.clear();
   location.reload();
